@@ -1,11 +1,21 @@
 import React, {memo} from 'react'
-import { renderRoutes } from "react-router-config";
+import { renderRoutes } from "react-router-config"
+import {NavLink} from 'react-router-dom'
+
+import './index.scss'
 
 const Home = props => {
     const {route} = props
     return (
         <div className="home-wrap">
-            Home
+            <div className="home-header">
+
+            </div>
+            <div className="home-tab">
+                <NavLink to='/recommend' activeClassName="nav-active">推荐</NavLink>
+                <NavLink to='/singers' activeClassName="nav-active">歌手</NavLink>
+                <NavLink to='/rank' activeClassName="nav-active">排行榜</NavLink>
+            </div>
             {renderRoutes(route.routes)}
         </div>
     )
