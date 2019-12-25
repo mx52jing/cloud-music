@@ -9,7 +9,13 @@ const Home = props => {
     return (
         <div className="home-wrap">
             <div className="home-header">
-
+                <span>
+                    <i className="icon iconfont icon-caidan"></i>
+                </span>
+                <span>Web App</span>
+                <span>
+                    <i className="icon iconfont icon-41"></i>
+                </span>
             </div>
             <div className="home-tab">
                 <NavLink to='/recommend' activeClassName="nav-active">推荐</NavLink>
