@@ -1,27 +1,47 @@
-import React, {memo} from 'react'
+import React, {memo, useEffect} from 'react'
+import {compose} from 'redux'
+import {connect} from 'react-redux'
+import {actions} from "../../store/reducers/recommend";
 import Slider from '@components/Slider'
 import RecommendList from '@components/RecommendList'
+import Scroll from '@components/Scroll'
 
 import './index.scss'
 
 const Recommend = props => {
-    const sliderList = [6,6,6,6].map(i => ({
-        imageUrl: "http://p1.music.126.net/ZYLJ2oZn74yUz5x8NBGkVA==/109951164331219056.jpg"
-    }))
-    const recommendList = [1,2,3,4,5,6,7,8,9,10].map (item => {
-        return {
-            id: item,
-            picUrl: "https://p1.music.126.net/fhmefjUfMD-8qtj3JKeHbA==/18999560928537533.jpg",
-            playCount: 17171122,
-            name: "朴树、许巍、李健、郑钧、老狼、赵雷"
-        }
-    });
+    console.log(props);
+    const {
+        fetch_banner,
+        fetch_recommend,
+        bannerList,
+        recommendList
+    } = props
+    useEffect(() => {
+        fetch_banner()
+        fetch_recommend()
+    }, [])
+    const bannerListJS = bannerList ? bannerList.toJS() : [],
+        recommendListJs = recommendList ? recommendList.toJS() : []
     return (
         <div className="recommend-wrapper">
-            <Slider sliderList={sliderList}/>
-            <RecommendList list={recommendList}/>
+            <Scroll>
+                <div>
+                    <Slider sliderList={bannerListJS}/>
+                    <RecommendList list={recommendListJs}/>
+                </div>
+            </Scroll>
         </div>
     )
 }
 
-export default memo(Recommend)
+export default compose(
+    connect(
+        state => ({
+            bannerList: state.getIn(['recommend', 'bannerList']),
+            recommendList: state.getIn(['recommend', 'recommendList']),
+        }),
+        actions
+    ),
+    memo
+)(Recommend)
+

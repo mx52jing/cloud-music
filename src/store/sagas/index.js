@@ -1,5 +1,7 @@
 import {fork} from 'redux-saga/effects'
+import {fetchBannerListFlow, fetchREcommendListFLow} from './recommendSaga'
 
 export default function* rootSaga() {
-    yield console.log('hello saga')
+    yield fork(fetchBannerListFlow)
+    yield fork(fetchREcommendListFLow)
 }
