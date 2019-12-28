@@ -103,7 +103,7 @@ const Scroll = forwardRef((props, ref) => {
 
 Scroll.propTypes = {
     /* 滚动方向 */
-    direction: PropTypes.oneOf(['vertical, horizental']),
+    direction: PropTypes.oneOf(['vertical', 'horizental']),
     /* 是否支持点击 */
     click: PropTypes.bool,
     /* 是否刷新 */

@@ -6,14 +6,14 @@ import './index.scss'
 
 const Slider = props => {
     const [sliderSwiper, setSliderSwiper] = useState(null)
-    const { sliderList } = props
+    const {sliderList} = props
     useEffect(_ => {
-        if(!sliderSwiper && !!sliderList.length) {
+        if (!sliderSwiper && !!sliderList.length) {
             const swiper = new Swiper('.slider-container', {
                 loop: true,
                 autoplay: true,
                 autoplayDisableOnInteraction: false,
-                pagination: {el:'.swiper-pagination'}
+                pagination: {el: '.swiper-pagination'}
             })
             setSliderSwiper(swiper)
         }
@@ -23,9 +23,9 @@ const Slider = props => {
             <div className="slider-container">
                 <div className="swiper-wrapper">
                     {
-                        sliderList.map((item, index) => (
+                        sliderList.map(item => (
                             <div
-                                key={index}
+                                key={item.imageUrl}
                                 className="swiper-slide">
                                 <div className="slider-nav">
                                     <img src={item.imageUrl} alt=""/>
