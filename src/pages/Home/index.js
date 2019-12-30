@@ -8,8 +8,7 @@ import Loading from '@BaseUI/Loading'
 import './index.scss'
 
 const Home = props => {
-    const {route} = props
-    const {isFetching} = props
+    const {route,isFetching} = props
     return (
         <div className="home-wrap">
             <div className="home-header">

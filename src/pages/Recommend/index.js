@@ -26,12 +26,12 @@ const Recommend = props => {
         recommendListJs = recommendList ? recommendList.toJS() : []
     return (
         <div className="recommend-wrapper">
-            <Scroll onScroll={forceCheck}>
-                <div>
+            {/*<Scroll onScroll={forceCheck}>*/}
+                {/*<div>*/}
                     <Slider sliderList={bannerListJS}/>
                     <RecommendList list={recommendListJs}/>
-                </div>
-            </Scroll>
+                {/*</div>*/}
+            {/*</Scroll>*/}
         </div>
     )
 }

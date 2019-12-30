@@ -2,8 +2,8 @@
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    //margin: auto;
     background: white;
+    overflow: hidden;
     &::before {
         content: '';
         position: absolute;

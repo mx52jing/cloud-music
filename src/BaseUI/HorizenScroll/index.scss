@@ -1,0 +1,23 @@
+.list-wrapper {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    overflow: hidden;
+    font-size: 14px;
+    .list-title {
+        flex: 0 0 auto;
+        padding: 5px 0;
+        margin-right: 5px;
+        color: #686666;
+    }
+    .list-item {
+        flex: 0 0 auto;
+        padding: 5px 8px;
+        cursor: pointer;
+        &.item-active {
+            color: $theme-color;
+            border-radius: 8px;
+            border: 1px solid $theme-color;
+        }
+    }
+}
