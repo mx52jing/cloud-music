@@ -1,5 +1,6 @@
 import React, {memo, useState, useCallback} from 'react'
 import HorizenScroll from '@BaseUI/HorizenScroll'
+import SingerList from './List'
 import {categoryTypes, alphaTypes} from '@api/config';
 
 import './index.scss'
@@ -17,7 +18,7 @@ const Singers = props => {
     }, [])
     return (
         <div className="singers-wrapper">
-            <div className="singers-scroll">
+            <div className="singers-horizen__scroll">
                 <HorizenScroll
                     valueType="category"
                     handleClick={handleClick}
@@ -31,6 +32,7 @@ const Singers = props => {
                     title="首字母:"
                     list={alphaTypes}/>
             </div>
+            <SingerList />
         </div>
     )
 }
