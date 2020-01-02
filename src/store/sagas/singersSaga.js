@@ -1,24 +1,36 @@
 import {put, call, take} from 'redux-saga/effects'
 import {fromJS} from 'immutable'
-import {getHotSingerListRequest, getRecommendList} from '@api/request'
+import {getHotSingerListRequest, getSingerListRequest} from '@api/request'
 import {actionTypes as homeActionTypes} from "../reducers/home";
 import {actionTypes as singersActionTypes} from "../reducers/singers";
 
-function* fetchSingerList() {
+function* fetchHotSingerList(count) {
     try {
         yield put({type: homeActionTypes.FETCH_START})
 
     }catch (e) {
-
+        console.log(e);
     }finally {
         yield put({type: homeActionTypes.FETCH_END})
     }
 }
-export function* singerFlow() {
+
+export function* hotSingerFlow() {
     try {
         yield take(singersActionTypes.UPDATE_SINGER_LIST)
-        yield call(fetchSingerList)
+        yield call(fetchHotSingerList)
     }catch (e) {
         console.log(e);
+    }
+}
+
+function* fetchSinger() {
+    try {
+        yield put({type: homeActionTypes.FETCH_START})
+
+    }catch (e) {
+        console.log(e);
+    }finally {
+        yield put({type: homeActionTypes.FETCH_END})
     }
 }

@@ -7,11 +7,16 @@ const initState = fromJS({
 })
 
 export const actionTypes = {
+    FETCH_HOT_SINGER: 'FETCH_HOT_SINGER',
+
     UPDATE_SINGER_LIST: 'UPDATE_SINGER_LIST',
     CHANGE_PAGE: 'CHANGE_PAGE'
 }
 
 export const actions = {
+    fetchHotSinger: count => ({
+        type:
+    }),
     updateSingerList: data => ({
         type: actionTypes.UPDATE_SINGER_LIST,
         data
