@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux-immutable'
 import {reducer as recommendReducer} from "./recommend"
-import {reducer as homeReducer} from "./home";
+import {reducer as homeReducer} from "./home"
+import {reducer as singerReducer} from "./singers";
 
 export default combineReducers({
     recommend: recommendReducer,
-    home: homeReducer
+    home: homeReducer,
+    singer: singerReducer
 })
