@@ -6,6 +6,7 @@ const initState = fromJS({
 })
 
 export const actionTypes = {
+    FETCH_SINGER_LIST: 'FETCH_SINGER_LIST',
     FETCH_HOT_SINGER: 'FETCH_HOT_SINGER',
     FETCH_SINGERS: 'FETCH_SINGERS',
     UPDATE_SINGER_LIST: 'UPDATE_SINGER_LIST',
@@ -13,6 +14,10 @@ export const actionTypes = {
 }
 
 export const actions = {
+    fetchSingerList: params => ({
+      type: actionTypes.FETCH_SINGER_LIST,
+      params
+    }),
     fetchHotSingers: (page = 0 ) => ({
         type: actionTypes.FETCH_HOT_SINGER,
         page

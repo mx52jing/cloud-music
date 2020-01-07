@@ -16,12 +16,13 @@ const Singers = props => {
     const {
         list,
         page,
-        fetchHotSingers,
-        fetchSingers
+        fetchSingerList
     } = props
-    console.log(props);
     useEffect(() => {
-        fetchHotSingers()
+        fetchSingerList({
+            fetchType: 'hot',
+            page
+        })
     }, [])
     const handleClick = useCallback((type, value) => {
         const newValue = {
@@ -29,7 +30,25 @@ const Singers = props => {
             [type]: value
         }
         handleSetScrollVal(newValue)
-        fetchSingers && fetchSingers(newValue)
+        fetchSingerList({
+            fetchType: 'normal',
+            page,
+            ...newValue
+        })
+    }, [scrollValue])
+
+    /* 上拉加载*/
+    const pullUp = useCallback(() => {
+        console.log('pill up', scrollValue);
+    }, [scrollValue])
+    /* 下拉加载 */
+    const pullDown = useCallback(() => {
+        fetchSingerList({
+            fetchType: 'normal',
+            page,
+            ...scrollValue
+        })
+        console.log('pullDown', scrollValue);
     }, [scrollValue])
     return (
         <div className="singers-wrapper">
@@ -48,6 +67,8 @@ const Singers = props => {
                     list={alphaTypes}/>
             </div>
             <SingerList
+                pullUp={pullUp}
+                pullDown={pullDown}
                 list={list}/>
         </div>
     )

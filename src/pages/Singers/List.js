@@ -4,10 +4,14 @@ import Scroll from '@BaseUI/Scroll'
 import singerImg from '@assets/images/singer.png'
 
 const SingerList = props => {
-    const {list: singerList} = props
+    const {list,pullUp,pullDown} = props,
+        singerList = list.toJS()
     return (
         <div className="singer-list-wrapper">
-            <Scroll onScroll={forceCheck}>
+            <Scroll
+                pullUp={pullUp}
+                pullDown={pullDown}
+                onScroll={forceCheck}>
                 <div>
                     <div className="singer-list__scroll">
                         {

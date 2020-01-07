@@ -10,10 +10,10 @@ export const getRecommendList = () => {
 }
 
 /* 请求热门歌手列表*/
-export const getHotSingerListRequest = (count) => {
-    return axiosInstance.get(`/top/artists?offset=${count}`);
+export const getHotSingerListRequest = ({page}) => {
+    return axiosInstance.get(`/top/artists?offset=${page}`);
 }
 /* 请求歌手列表  */
-export const getSingerListRequest= (category, alpha, count) => {
-    return axiosInstance.get(`/artist/list?cat=${category}&initial=${alpha.toLowerCase()}&offset=${count}`);
+export const getSingerListRequest= ({category, initials, page}) => {
+    return axiosInstance.get(`/artist/list?cat=${category}&initial=${initials.toLowerCase()}&offset=${page}`);
 }
