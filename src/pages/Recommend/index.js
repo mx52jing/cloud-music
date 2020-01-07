@@ -19,6 +19,7 @@ const Recommend = props => {
         !bannerList.size && fetch_banner()
         /* 请求推荐列表 */
         !recommendList.size && fetch_recommend()
+    // eslint-disable-next-line
     }, [])
     const bannerListJS = bannerList ? bannerList.toJS() : [],
         recommendListJs = recommendList ? recommendList.toJS() : []

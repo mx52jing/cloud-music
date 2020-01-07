@@ -20,7 +20,10 @@ const SingerList = props => {
                                     <div
                                         key={item.id}
                                         className="singer-list-item">
-                                        <LazyLoad placeholder={<img width="100%" height="100%" src={singerImg} alt="music"/>}>
+                                        <LazyLoad
+                                            placeholder={
+                                                <img width="100%" height="100%" src={singerImg} alt="music"/>
+                                            }>
                                             <img src={`${item.picUrl}?param=300x300`} alt=""/>
                                         </LazyLoad>
                                         <span>{item.name}</span>

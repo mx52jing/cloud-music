@@ -2,13 +2,11 @@ import {fromJS} from 'immutable'
 
 const initState = fromJS({
     singerList: [], //歌手列表
-    page: 1 // 页数
+    page: 0 // 页数
 })
 
 export const actionTypes = {
     FETCH_SINGER_LIST: 'FETCH_SINGER_LIST',
-    FETCH_HOT_SINGER: 'FETCH_HOT_SINGER',
-    FETCH_SINGERS: 'FETCH_SINGERS',
     UPDATE_SINGER_LIST: 'UPDATE_SINGER_LIST',
     CHANGE_PAGE: 'CHANGE_PAGE'
 }
@@ -17,14 +15,6 @@ export const actions = {
     fetchSingerList: params => ({
       type: actionTypes.FETCH_SINGER_LIST,
       params
-    }),
-    fetchHotSingers: (page = 0 ) => ({
-        type: actionTypes.FETCH_HOT_SINGER,
-        page
-    }),
-    fetchSingers: data => ({
-        type: actionTypes.FETCH_SINGERS,
-        data
     }),
     updateSingerList: data => ({
         type: actionTypes.UPDATE_SINGER_LIST,

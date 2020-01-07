@@ -35,7 +35,10 @@ const HorizenScroll = props => {
                                         'item-active': item.key === value
                                     })
                                 }
-                                onClick={_ => handleClick(valueType, item.key)}
+                                onClick={_ => {
+                                    if(value === item.key) return
+                                    handleClick(valueType, item.key)
+                                }}
                                 key={item.key}>
                                 {item.name}
                             </div>

@@ -37,6 +37,7 @@ const Scroll = forwardRef((props, ref) => {
         return _ => {
             handleSetBscroll(null)
         }
+    // eslint-disable-next-line
     }, [])
     /* 每次重新渲染都要刷新实例，防止无法滑动 */
     useEffect(() => {
@@ -58,7 +59,10 @@ const Scroll = forwardRef((props, ref) => {
     useEffect(() => {
         if (!bScroll || !pullUp) return
         bScroll.on('scrollEnd', _ => {
-            if (bScroll.y - bScroll.maxScrollY <= 100) {
+            if (
+                +bScroll.y !== 0 &&
+                (bScroll.y - bScroll.maxScrollY <= 100)
+            ) {
                 pullUp()
             }
         })

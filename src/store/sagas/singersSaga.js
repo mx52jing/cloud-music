@@ -1,4 +1,4 @@
-import {put, call, take} from 'redux-saga/effects'
+import {put, call, take, select} from 'redux-saga/effects'
 import {fromJS} from 'immutable'
 import {getHotSingerListRequest, getSingerListRequest} from '@api/request'
 import {actionTypes as homeActionTypes} from "../reducers/home";
@@ -9,15 +9,18 @@ const fetchTypeMap = new Map([
     ['normal', getSingerListRequest]
 ])
 
-function* fetchSingerList({fetchType, ...params}) {
+function* fetchSingerList({fetchType, isAppend, ...params}) {
     try {
         yield put({type: homeActionTypes.FETCH_START})
         const cb = fetchTypeMap.get(fetchType)
         const data = yield call(cb, {...params}),
             {code, artists} = data
-        if (+code === 200) {
+        if (+code === 200 && !isAppend) {
             return artists
         }
+        let oldList = yield select(state => state.getIn(['singer', 'singerList']))
+        oldList = oldList ? oldList.toJS() : []
+        return [...oldList, ...artists]
     }catch (e) {
 
     }finally {

@@ -1,5 +1,5 @@
 import React, {memo, useState, useCallback, useEffect} from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {actions} from "../../store/reducers/singers";
 import HorizenScroll from '@BaseUI/HorizenScroll'
@@ -16,15 +16,18 @@ const Singers = props => {
     const {
         list,
         page,
-        fetchSingerList
+        fetchSingerList,
+        changePage
     } = props
     useEffect(() => {
         fetchSingerList({
             fetchType: 'hot',
             page
         })
+    // eslint-disable-next-line
     }, [])
     const handleClick = useCallback((type, value) => {
+        changePage(0)
         const newValue = {
             ...scrollValue,
             [type]: value
@@ -35,12 +38,22 @@ const Singers = props => {
             page,
             ...newValue
         })
+    // eslint-disable-next-line
     }, [scrollValue])
 
     /* 上拉加载*/
     const pullUp = useCallback(() => {
-        console.log('pill up', scrollValue);
-    }, [scrollValue])
+        const {category, initials} = scrollValue,
+            fetchType = (!!category || !!initials) ? 'normal' : 'hot'
+        fetchSingerList({
+            fetchType,
+            isAppend: true,
+            page: page + 50,
+            ...scrollValue
+        })
+        changePage(page+50)
+    // eslint-disable-next-line
+    }, [scrollValue, page])
     /* 下拉加载 */
     const pullDown = useCallback(() => {
         fetchSingerList({
@@ -48,7 +61,7 @@ const Singers = props => {
             page,
             ...scrollValue
         })
-        console.log('pullDown', scrollValue);
+    // eslint-disable-next-line
     }, [scrollValue])
     return (
         <div className="singers-wrapper">
@@ -78,9 +91,6 @@ const mapStateToProps = state => ({
     list: state.getIn(['singer', 'singerList']),
     page: state.getIn(['singer', 'page'])
 })
-// const mapDispatchToProps = actions => {
-//     return {actions}
-// }
 
 export default compose(
     connect(mapStateToProps, actions),
