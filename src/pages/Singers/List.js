@@ -4,8 +4,8 @@ import Scroll from '@BaseUI/Scroll'
 import singerImg from '@assets/images/singer.png'
 
 const SingerList = props => {
-    const {list,pullUp,pullDown} = props,
-        singerList = list.toJS()
+    const {singerData,pullUp,pullDown} = props,
+        {artists = [], more } = singerData.toJS()
     return (
         <div className="singer-list-wrapper">
             <Scroll
@@ -15,8 +15,8 @@ const SingerList = props => {
                 <div>
                     <div className="singer-list__scroll">
                         {
-                            !!singerList.length &&
-                                singerList.map(item => (
+                            !!artists.length &&
+                            artists.map(item => (
                                     <div
                                         key={item.id}
                                         className="singer-list-item">
@@ -31,6 +31,15 @@ const SingerList = props => {
                                 ))
                         }
                     </div>
+                    {
+                        !more && (
+                            <div className="not-more">
+                                <span>
+                                    我是有底线的
+                                </span>
+                            </div>
+                        )
+                    }
                 </div>
             </Scroll>
         </div>

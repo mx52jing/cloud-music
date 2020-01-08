@@ -14,13 +14,14 @@ const Singers = props => {
         initials: ''
     })
     const {
-        list,
+        singerData,
         page,
-        fetchSingerList,
+        fetchSingerData,
         changePage
-    } = props
+    } = props,
+        more = singerData.get('more')
     useEffect(() => {
-        fetchSingerList({
+        fetchSingerData({
             fetchType: 'hot',
             page
         })
@@ -33,7 +34,7 @@ const Singers = props => {
             [type]: value
         }
         handleSetScrollVal(newValue)
-        fetchSingerList({
+        fetchSingerData({
             fetchType: 'normal',
             page,
             ...newValue
@@ -45,7 +46,7 @@ const Singers = props => {
     const pullUp = useCallback(() => {
         const {category, initials} = scrollValue,
             fetchType = (!!category || !!initials) ? 'normal' : 'hot'
-        fetchSingerList({
+        more && fetchSingerData({
             fetchType,
             isAppend: true,
             page: page + 50,
@@ -53,10 +54,10 @@ const Singers = props => {
         })
         changePage(page+50)
     // eslint-disable-next-line
-    }, [scrollValue, page])
+    }, [scrollValue, page, more])
     /* 下拉加载 */
     const pullDown = useCallback(() => {
-        fetchSingerList({
+        fetchSingerData({
             fetchType: 'normal',
             page,
             ...scrollValue
@@ -82,13 +83,13 @@ const Singers = props => {
             <SingerList
                 pullUp={pullUp}
                 pullDown={pullDown}
-                list={list}/>
+                singerData={singerData}/>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    list: state.getIn(['singer', 'singerList']),
+    singerData: state.getIn(['singer', 'singerData']),
     page: state.getIn(['singer', 'page'])
 })
 

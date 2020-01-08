@@ -1,4 +1,12 @@
-import React, {forwardRef, memo, useRef, useState, useEffect, useImperativeHandle} from 'react'
+import React, {
+    forwardRef,
+    memo,
+    useRef,
+    useState,
+    useEffect,
+    useImperativeHandle,
+    cloneElement
+} from 'react'
 import PropTypes from 'prop-types'
 import BScroll from 'better-scroll'
 
@@ -37,7 +45,7 @@ const Scroll = forwardRef((props, ref) => {
         return _ => {
             handleSetBscroll(null)
         }
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
     /* 每次重新渲染都要刷新实例，防止无法滑动 */
     useEffect(() => {
@@ -84,14 +92,14 @@ const Scroll = forwardRef((props, ref) => {
         }
     }, [pullDown, bScroll])
     /* 将组件内的方法暴露出去 */
-    useImperativeHandle(ref, _ => ({
+    useImperativeHandle(ref, () => ({
         refresh: _ => {
             if (!bScroll) return
             bScroll.refresh()
             bScroll.scrollTo(0, 0)
         },
         getBsInstance: _ => {
-            if(bScroll) {
+            if (bScroll) {
                 return bScroll
             }
         }
@@ -125,7 +133,7 @@ Scroll.propTypes = {
     /* 是否支持向上吸顶/滚动超过边缘的时候会有一小段回弹动画，表示是否开启动画*/
     bounceTop: PropTypes.bool,
     /* 是否支持向下吸底 */
-    bounceBottom: PropTypes.bool
+    bounceBottom: PropTypes.bool,
 }
 
 Scroll.defaultProps = {

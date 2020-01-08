@@ -14,15 +14,15 @@ function* fetchSingerList({fetchType, isAppend, ...params}) {
         yield put({type: homeActionTypes.FETCH_START})
         const cb = fetchTypeMap.get(fetchType)
         const data = yield call(cb, {...params}),
-            {code, artists} = data
+            {code, artists, more} = data
         if (+code === 200 && !isAppend) {
-            return artists
+            return {more, artists}
         }
-        let oldList = yield select(state => state.getIn(['singer', 'singerList']))
+        let oldList = yield select(state => state.getIn(['singer', 'singerData', 'artists']))
         oldList = oldList ? oldList.toJS() : []
-        return [...oldList, ...artists]
+        return {more, artists: [...oldList, ...artists]}
     }catch (e) {
-
+        console.log(e);
     }finally {
         yield put({type: homeActionTypes.FETCH_END})
     }
@@ -31,12 +31,12 @@ function* fetchSingerList({fetchType, isAppend, ...params}) {
 export function* fetchSingerListWatcher() {
     while (true) {
         try {
-            const {params} = yield take(singersActionTypes.FETCH_SINGER_LIST)
-            const list = yield call(fetchSingerList, params)
-            if (!!list) {
+            const {params} = yield take(singersActionTypes.FETCH_SINGER_DATA)
+            const data = yield call(fetchSingerList, params)
+            if (!!data) {
                 yield put({
-                    type: singersActionTypes.UPDATE_SINGER_LIST,
-                    data: fromJS(list)
+                    type: singersActionTypes.UPDATE_SINGER_DATA,
+                    data: fromJS(data)
                 })
             }
         }catch (e) {
