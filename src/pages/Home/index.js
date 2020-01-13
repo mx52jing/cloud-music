@@ -15,7 +15,7 @@ const Home = props => {
                 <span>
                     <i className="icon iconfont icon-caidan"></i>
                 </span>
-                <span>Web App</span>
+                <span>云音悦</span>
                 <span>
                     <i className="icon iconfont icon-41"></i>
                 </span>

@@ -20,9 +20,9 @@
         opacity: 0.6;
         border-radius: 50%;
         background-color: $theme-color;
-        animation: loading 1.4s infinite ease-in;
+        animation: loading 1.2s infinite ease-in;
         &:nth-last-of-type(1) {
-            animation-delay: 0.7s;
+            animation-delay: 0.6s;
         }
     }
 }

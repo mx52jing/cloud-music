@@ -1,7 +1,7 @@
 import React, {memo, useState, useCallback, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import {actions} from "../../store/reducers/singers";
+import {actions} from "@store/reducers/singers";
 import HorizenScroll from '@BaseUI/HorizenScroll'
 import SingerList from './List'
 import {categoryTypes, alphaTypes} from '@api/config';
@@ -25,6 +25,9 @@ const Singers = props => {
             fetchType: 'hot',
             page
         })
+        return () => {
+            changePage(0)
+        }
     // eslint-disable-next-line
     }, [])
     const handleClick = useCallback((type, value) => {
