@@ -49,7 +49,7 @@ function* fetchRecommend() {
     }
 }
 
-export function* fetchREcommendListFLow() {
+export function* fetchRecommendListFLow() {
     try {
         yield take(recommendActionTypes.FETCH_RECOMMEND_LIST)
         const data = yield call(fetchRecommend)
