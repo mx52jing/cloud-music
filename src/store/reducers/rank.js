@@ -1,4 +1,4 @@
-import {fromJS} from 'immutable'
+import { fromJS } from 'immutable'
 
 const initState = fromJS({
     rankList: []
@@ -10,7 +10,7 @@ export const actionTypes = {
 }
 
 export const actions = {
-    fetchRankList: () => ({type: actionTypes.FETCH_RANK_LIST}),
+    fetchRankList: () => ({ type: actionTypes.FETCH_RANK_LIST }),
     updateRankList: data => ({
         type: actionTypes.UPDATE_RANK_LIST,
         data
@@ -18,7 +18,7 @@ export const actions = {
 }
 
 export const reducer = (state = initState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case actionTypes.UPDATE_RANK_LIST:
             return state.set('rankList', action.data)
         default:

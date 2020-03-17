@@ -9,6 +9,7 @@ import RankList from './RankList'
 import './index.scss'
 
 const Rank = props => {
+    console.log('Rank render');
     const {
             fetchRankList,
             rankList

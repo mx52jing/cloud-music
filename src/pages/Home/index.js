@@ -1,14 +1,14 @@
-import React, {memo} from 'react'
+import React, { memo } from 'react'
 import { renderRoutes } from "react-router-config"
-import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {compose} from 'redux'
+import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 import Loading from '@BaseUI/Loading'
 
 import './index.scss'
 
 const Home = props => {
-    const {route,isFetching} = props
+    const { route, isFetching } = props
     return (
         <div className="home-wrap">
             <div className="home-header">
@@ -26,14 +26,14 @@ const Home = props => {
                 <NavLink to='/rank' activeClassName="nav-active">排行榜</NavLink>
             </div>
             {renderRoutes(route.routes)}
-            {isFetching && <Loading />}
+            {isFetching && <Loading/>}
         </div>
     )
 }
 
 export default compose(
     connect(
-        state => ({isFetching: state.getIn(['home', 'isFetching'])})
+        state => ({ isFetching: state.getIn(['home', 'isFetching']) })
     ),
     memo
 )(Home)
