@@ -1,7 +1,7 @@
 import React, {memo, useEffect} from 'react'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
-import {actions} from "../../store/reducers/recommend";
+import {actions} from "@store/reducers/recommend";
 import Slider from '@components/Slider'
 import RecommendList from '@components/RecommendList'
 
