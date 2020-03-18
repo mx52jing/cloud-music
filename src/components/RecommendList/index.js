@@ -1,13 +1,13 @@
-import React, {memo} from 'react'
-import LazyLoad, {forceCheck} from 'react-lazyload'
-import {getCount} from '@api/utils'
+import React, { memo } from 'react'
+import LazyLoad, { forceCheck } from 'react-lazyload'
+import { getCount } from '@api/utils'
 import Scroll from '@BaseUI/Scroll'
 import musicImage from '@assets/images/music.png'
 
 import './index.scss'
 
 const RecommendList = props => {
-    const {list} = props
+    const { list, onClick } = props
     return (
         <div className="recommend-list-wrapper">
             <h1 className="recommend-list-title">推荐歌单</h1>
@@ -19,6 +19,7 @@ const RecommendList = props => {
                                 !!list.length ?
                                     list.map(item => (
                                         <div
+                                            onClick={() => onClick(item.id)}
                                             key={item.id}
                                             className="recommend-list-item">
                                             <div className="img-wrapper">

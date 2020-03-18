@@ -9,7 +9,6 @@ import RankList from './RankList'
 import './index.scss'
 
 const Rank = props => {
-    console.log('Rank render');
     const {
             fetchRankList,
             rankList
@@ -44,11 +43,11 @@ const Rank = props => {
 }
 
 export default compose(
+    memo,
     connect(
         state => ({
             rankList: state.getIn(['rank', 'rankList'])
         }),
         actions
-    ),
-    memo
+    )
 )(Rank)

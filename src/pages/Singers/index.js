@@ -97,6 +97,6 @@ const mapStateToProps = state => ({
 })
 
 export default compose(
+    memo,
     connect(mapStateToProps, actions),
-    memo
 )(Singers)
